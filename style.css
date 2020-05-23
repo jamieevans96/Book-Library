@@ -1,0 +1,22 @@
+.library {
+    display: flex;
+  }
+  
+  .container {
+    display: inline-block;
+    background-color: grey;
+    width: 200px;
+    height: 300px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 10px;
+    border-radius: 4px;
+  }
+  
+  .text {
+    font-family: sans-serif;
+  }
+  
+  .inputForm {
+    display: none;
+  }

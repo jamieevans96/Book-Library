@@ -9,19 +9,37 @@
     <title>Document</title>
 </head>
 <body>
-
-    <input id="title" type="text" value="title">
-    <input id="author" type="text" value="author">
-    <input id="pages" type="number" value="pages">
-    <input id="read" type="checkbox" value="read">
-
-    <div id="container">
-        <div>Book Title</div>
-        <div>Author</div>
-        <div>Number of Pages</div>
-        <div>Read Yet?</div>
+  
+    <div id="library" class="library">
+      <div id="container" class="container">
+        <div class="text">Harry Potter</div>
+        <div class="text">JK Rowling</div>
+        <div class="text">256</div>
+        <div onclick="changeRead(0)" id="read0" class="text">Read</div>
+        <a onclick="delBook(0)" id="close0">x</a>
+      </div>
+      
+      <div id="container" class="container">
+        <div class="text">Petret</div>
+        <div class="text">Thomas Aloping</div>
+        <div class="text">316</div>
+        <div onclick="changeRead(1)" id="read1" class="text">Not Read</div>
+        <a onclick="delBook(1)" id="close1">x</a>
+      </div>
     </div>
-</body>
+    
+    <button onclick="addItem()">Add Book</button>
+    
+    <div class="inputForm" id='show'>
+      <input id="title" type="text" value="title">
+      <input id="author" type="text" value="author">
+      <input id="pages" type="number" value="pages">
+      <input id="read" type="checkbox">
+      <button type="submit" onclick="addBookToLibrary()">Submit</button>
+      <button onclick="closeForm()">Close</button>
+    </div>
+      
+  </body>
 
 <script src="script.js"></script>
 
