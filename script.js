@@ -1,7 +1,10 @@
-let myLibrary = [];
+let myLibrary = [new Book('Harry Potter', 'JK Rowling', '256', true, 'a'), new Book('Petret', 'Thomas Aloping', '316', false, 'b')];
 let c = 1;
+let chars = 'abcdef';
 
-function Book(title, author, pages, read) {
+// var letter = chars.charAt(Math.floor(Math.random() * chars.length));
+
+function Book(title, author, pages, read, bg) {
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -9,20 +12,17 @@ function Book(title, author, pages, read) {
   // this.info = function() {
   //   return(title + ' by ' + author + ', ' + pages + ' pages' + ', ' + read);
   // }
+  this.bg = bg;
 }
-
-const book1 = new Book('Harry Potter', 'JK Rowling', '256', true);
-const book2 = new Book('Petret', 'Thomas Aloping', '316', false);
-
-myLibrary.push(book1, book2);
 
 function addBookToLibrary() {  
   var newTitle = document.getElementById("title").value;
   var newAuthor = document.getElementById("author").value;
   var newPages = document.getElementById("pages").value;
   var newRead = document.getElementById("read").checked;
+  var newBg = chars.charAt(Math.floor(Math.random() * chars.length));
   
-  const newBook = new Book(newTitle, newAuthor, newPages, newRead);
+  const newBook = new Book(newTitle, newAuthor, newPages, newRead, newBg);
   
   myLibrary.push(newBook);
   
@@ -38,6 +38,7 @@ function render(a, b) {
   var container = document.createElement("div");
   document.getElementById("library").appendChild(container);
   container.classList.add("container");
+  container.classList.add(a.bg);
   container.setAttribute("id", "container" + b);
   
   var ttl = document.createElement("div");

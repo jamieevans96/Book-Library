@@ -11,7 +11,7 @@
 <body>
   
     <div id="library" class="library">
-      <div id="container" class="container">
+      <div id="container" class="container a">
         <div class="text">Harry Potter</div>
         <div class="text">JK Rowling</div>
         <div class="text">256</div>
@@ -19,7 +19,7 @@
         <a onclick="delBook(0)" id="close0">x</a>
       </div>
       
-      <div id="container" class="container">
+      <div id="container" class="container b">
         <div class="text">Petret</div>
         <div class="text">Thomas Aloping</div>
         <div class="text">316</div>
@@ -31,11 +31,11 @@
     <button onclick="addItem()">Add Book</button>
     
     <div class="inputForm" id='show'>
-      <input id="title" type="text" value="title">
-      <input id="author" type="text" value="author">
-      <input id="pages" type="number" value="pages">
+      <input id="title" type="text">
+      <input id="author" type="text">
+      <input id="pages" type="number">
       <input id="read" type="checkbox">
-      <button type="submit" onclick="addBookToLibrary()">Submit</button>
+      <button onclick="addBookToLibrary()" type="submit">Submit</button>
       <button onclick="closeForm()">Close</button>
     </div>
       
