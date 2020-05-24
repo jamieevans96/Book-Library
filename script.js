@@ -1,4 +1,4 @@
-let myLibrary = [new Book('Harry Potter', 'JK Rowling', '256', true, 'a'), new Book('Petret', 'Thomas Aloping', '316', false, 'b')];
+let myLibrary = [new Book('Harry Potter', 'J.K. Rowling', '256', true, 'a'), new Book('The Dog', 'James Bond', '316', false, 'b')];
 let c = 1;
 let chars = 'abcdef';
 
@@ -40,26 +40,34 @@ function render(a, b) {
   container.classList.add("container");
   container.classList.add(a.bg);
   container.setAttribute("id", "container" + b);
+
+  var cls = document.createElement("a");
+  document.getElementById("container" + b).appendChild(cls);
+  cls.classList.add("closeBtn");
+  cls.setAttribute("id", "close" + b);
+  cls.setAttribute("onclick", "delBook(" + b + ")");
+  cls.innerHTML = '🗑️';
   
   var ttl = document.createElement("div");
   document.getElementById("container" + b).appendChild(ttl);
   ttl.classList.add("text");
-  ttl.innerHTML = a.title;
+  ttl.innerHTML = "Book: " + a.title;
   
   var aut = document.createElement("div");
   document.getElementById("container" + b).appendChild(aut);
   aut.classList.add("text");
-  aut.innerHTML = a.author;
+  aut.innerHTML = "Author: " + a.author;
   
   var pgs = document.createElement("div");
   document.getElementById("container" + b).appendChild(pgs);
   pgs.classList.add("text");
-  pgs.innerHTML = a.pages;
+  pgs.innerHTML = "Pages: " + a.pages;
     
   
   var rd = document.createElement("div");
   document.getElementById("container" + b).appendChild(rd);
   rd.classList.add("text");
+  rd.classList.add("read");
   rd.setAttribute("id", "read" + b);
   rd.setAttribute("onclick", "changeRead(" + b + ")");
   
@@ -69,22 +77,20 @@ function render(a, b) {
   else {
     rd.innerHTML = 'Not Read';
   } 
-  
-  var cls = document.createElement("a");
-  document.getElementById("container" + b).appendChild(cls);
-  cls.setAttribute("id", "close" + b);
-  cls.setAttribute("onclick", "delBook(" + b + ")");
-  cls.innerHTML = 'x';
 }
 
 function addItem() {
-  var x = document.getElementById("show");
-   x.style.display = "block";
+    var x = document.getElementsByClassName("inp1")
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "flex";
+    }
 }
 
 function closeForm() {
-  var x = document.getElementById("show");
-   x.style.display = "none";
+    var x = document.getElementsByClassName("inp1")
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
 }
 
 function delBook(x) {
@@ -104,14 +110,7 @@ function changeRead(x) {
     temp.removeChild(temp.firstChild);
   }
   
-  var a = myLibrary[x].read;
-  
-  if (a) {
-    myLibrary[x].read = false;
-  }
-  else {
-    myLibrary[x].read = true;
-  }
+  myLibrary[x].read = !myLibrary[x].read;
   
   myLibrary.forEach(render);  
 }

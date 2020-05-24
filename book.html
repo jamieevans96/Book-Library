@@ -10,33 +10,37 @@
 </head>
 <body>
   
+    <div class="formContainer">
+        <button class="inp2 btn1"onclick="addItem()">Add Book</button>
+        <label class="text2 inp1" for="title">Book Title:</label>
+        <input class="inp1 inp2" id="title" type="text">
+        <label class="text2 inp1" for="author">Author:</label>
+        <input class="inp1 inp2" id="author" type="text">
+        <label class="text2 inp1" for="pages">Number of Pages:</label>
+        <input class="inp1 inp2" id="pages" type="number">
+        <label class="text2 inp1" for="read">Read Yet?</label>
+        <input class="inp1 inp2" id="read" type="checkbox">
+        <button class="inp1 inp2 btn1" onclick="addBookToLibrary()" type="submit">Submit</button>
+        <button class="inp1 inp2 btn1" onclick="closeForm()">Close</button>
+    </div>
+
+
     <div id="library" class="library">
       <div id="container" class="container a">
-        <div class="text">Harry Potter</div>
-        <div class="text">JK Rowling</div>
-        <div class="text">256</div>
-        <div onclick="changeRead(0)" id="read0" class="text">Read</div>
-        <a onclick="delBook(0)" id="close0">x</a>
+        <a class="closeBtn" onclick="delBook(0)" id="close0">🗑️</a>
+        <div class="text">Book: Harry Potter</div>
+        <div class="text">Author: J.K. Rowling</div>
+        <div class="text">Pages: 256</div>
+        <div onclick="changeRead(0)" id="read0" class="text read">Read</div>
       </div>
       
       <div id="container" class="container b">
-        <div class="text">Petret</div>
-        <div class="text">Thomas Aloping</div>
-        <div class="text">316</div>
-        <div onclick="changeRead(1)" id="read1" class="text">Not Read</div>
-        <a onclick="delBook(1)" id="close1">x</a>
+        <a class="closeBtn" onclick="delBook(1)" id="close1">🗑️</a>
+        <div class="text">Book: The Dog</div>
+        <div class="text">Author: James Bond</div>
+        <div class="text">Pages: 316</div>
+        <div onclick="changeRead(1)" id="read1" class="text read">Not Read</div>
       </div>
-    </div>
-    
-    <button onclick="addItem()">Add Book</button>
-    
-    <div class="inputForm" id='show'>
-      <input id="title" type="text">
-      <input id="author" type="text">
-      <input id="pages" type="number">
-      <input id="read" type="checkbox">
-      <button onclick="addBookToLibrary()" type="submit">Submit</button>
-      <button onclick="closeForm()">Close</button>
     </div>
       
   </body>
