@@ -14,10 +14,10 @@ function Book(title, author, pages, read) {
 }
 
 const libraryJS = [
-  new Book("Harry Potter", "J.K Rowling", 274, true),
-  new Book("Police Liar", "Tom Fitzgerald", 182, false),
-  new Book("Electronic Arts", "Sports", 518, true),
-  new Book("Waluigi Eaccs", "Werty Rerty", 291, false)
+  new Book("Harry Potter and the Philosopher's Stone", "J.K Rowling", 223, true),
+  new Book(" Ulysses", "James Joyce", 730, false),
+  new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, true),
+  new Book("Moby Dick", "Herman Melville", 927, false)
 ];
 
 const renderBook = (item, idx) => {
@@ -132,7 +132,7 @@ const renderButton = () => {
   let addButton = document.createElement("i");
 
   divButton.classList.add("newBook");
-  addButton.classList.add("fa", "fa-2x", "fa-plus-circle", "addBook");
+  addButton.classList.add("fa", "fa-4x", "fa-plus-circle", "addBook");
 
   divButton.appendChild(addButton);
 

@@ -80,15 +80,15 @@
   
   .shelf {
     position: absolute;
-    height: 30px;
-    width: 80%;
+    height: 60px;
+    width: 74%;
     background-color: rgb(202, 134, 70);
     box-shadow: 0px -10px 15px -7px rgba(0, 0, 0, 0.25);
     z-index: 10;
     border-radius: 2px;
   }
   
-  .shelf::before {
+  /* .shelf::before {
     content: "";
     width: 40px;
     height: 200%;
@@ -108,19 +108,19 @@
     position: absolute;
     background-color: rgb(202, 134, 70);
     border-radius: 2px;
-  }
+  } */
   
   .shelf:nth-child(1) {
     top: 85%;
   }
   
   .shelf:nth-child(2) {
-    top: 178%;
+    top: 176%;
     display: none;
   }
   
   .shelf:nth-child(3) {
-    top: 271%;
+    top: 267%;
     display: none;
   }
   
@@ -142,6 +142,7 @@
   
   .newBook {
     color: rgb(88, 88, 88);
+    background-color: transparent;
     transition: 0.2s;
   }
   
@@ -343,7 +344,7 @@
     background: transparent;
   }
   
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1660px) {
     .library {
       width: 75%;
     }
@@ -353,7 +354,7 @@
     }
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1280px) {
     .library {
       width: 80%;
     }
