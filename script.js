@@ -3,22 +3,23 @@ const modal = document.querySelector(".modal");
 
 const library = document.querySelector(".library");
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, id) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
+  this.id = id;
   this.info = function() {
     return title + " by " + author + ", " + pages + " pages" + ", " + read;
   };
 }
 
-const libraryJS = [
-  new Book("Harry Potter and the Philosopher's Stone", "J.K Rowling", 223, true),
-  new Book(" Ulysses", "James Joyce", 730, false),
-  new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, true),
-  new Book("Moby Dick", "Herman Melville", 927, false)
-];
+// const libraryJS = [
+//   new Book("Harry Potter and the Philosopher's Stone", "J.K Rowling", 223, true),
+//   new Book("Ulysses", "James Joyce", 730, false),
+//   new Book("The Great Gatsby", "F. Scott Fitzgerald", 218, true),
+//   new Book("Moby Dick", "Herman Melville", 927, false)
+// ];
 
 const renderBook = (item, idx) => {
   let divBook = document.createElement("div");
@@ -104,12 +105,16 @@ const renderBook = (item, idx) => {
     });
 
     deleteButton.addEventListener("click", () => {
-      libraryJS.splice(idx, 1);
+      // libraryJS.splice(idx, 1);
+
+      db.collection('books').doc(item.id).delete()
 
       modal.classList.remove("modalAnim");
       cover.style.display = "none";
 
-      updateDom();
+      db.collection('books').get().then(() => {
+        updateDom();
+      })
     });
 
     modal.append(close, bookTitle, bookAuthor, bookBottom, bookDisplay);
@@ -220,14 +225,21 @@ const addUpdate = (ans, item, idx) => {
           errorsDiv.appendChild(error);
         });
       } else {
-        libraryJS.push(
-          new Book(
-            inputTitle.value,
-            inputAuthor.value,
-            inputPages.value,
-            inputRead.checked
-          )
-        );
+        db.collection('books').add({
+          title: inputTitle.value,
+          author: inputAuthor.value,
+          pages: inputPages.value,
+          read: inputRead.checked
+        })
+        
+        // libraryJS.push(
+        //   new Book(
+        //     inputTitle.value,
+        //     inputAuthor.value,
+        //     inputPages.value,
+        //     inputRead.checked
+        //   )
+        // );
 
         inputTitle.value = "";
         inputAuthor.value = "";
@@ -272,10 +284,17 @@ const addUpdate = (ans, item, idx) => {
           errorsDiv.appendChild(error);
         });
       } else {
-        libraryJS[idx].title = inputTitle.value;
-        libraryJS[idx].author = inputAuthor.value;
-        libraryJS[idx].pages = inputPages.value;
-        libraryJS[idx].read = inputRead.checked;
+        db.collection('books').doc(item.id).update({
+          title: inputTitle.value,
+          author: inputAuthor.value,
+          pages: inputPages.value,
+          read: inputRead.checked
+        })
+
+        // libraryJS[idx].title = inputTitle.value;
+        // libraryJS[idx].author = inputAuthor.value;
+        // libraryJS[idx].pages = inputPages.value;
+        // libraryJS[idx].read = inputRead.checked;
 
         inputTitle.value = "";
         inputAuthor.value = "";
@@ -315,11 +334,14 @@ const updateDom = () => {
 
   library.append(shelf1, shelf2, shelf3);
 
-  libraryJS.forEach((book, index) => {
-    renderBook(book, index);
-  });
-
-  renderButton();
+  db.collection('books').orderBy('title').get().then(snapshot => {
+    snapshot.docs.forEach((doc, index) => {
+      const bk = doc.data()
+      const book = new Book(bk.title, bk.author, bk.pages, bk.read, doc.id)
+      renderBook(book, index)
+    })
+    renderButton();
+  })
 };
 
 updateDom();
